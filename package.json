@@ -1,0 +1,25 @@
+{
+  "name": "mark",
+  "version": "0.0.1",
+  "description": "A reimplementation underscore, a popular functional programming javascript library",
+  "main": "mark.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register test/*.test.js -w"
+  },
+  "keywords": [
+    "underscore",
+    "functional-programming-library",
+    "util"
+  ],
+  "author": "Pawan Kumar",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.0.2",
+    "chai-shallow-deep-equal": "^1.4.6",
+    "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "babel-register": "^6.24.1"
+  }
+}
