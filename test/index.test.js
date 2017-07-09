@@ -4,6 +4,7 @@ import {
 	each,
 	map,
 	reduce,
+	reduceRight,
 } from '../mark'
 
 describe('collection tests', () => {
@@ -123,5 +124,44 @@ describe('collection tests', () => {
 
 	it('reduce: empty object', () =>
 		assert(reduce({}, (memo, num) => num, 2), 2)
+	)
+
+	it('reduceRight: reverse flat array', () => {
+		const expected = [6, 7, 4, 5, 2, 3]
+		const array = [[2, 3], [4, 5], [6, 7]]
+		assert(
+			reduceRight(array, (memo, array) => memo.concat(array), []),
+			expected
+		)
+	})
+
+	it('reduceRight: simple array', () => {
+		const expected = 12
+		assert(reduceRight([1, 2, 3], (memo, num) => memo * num, 2), expected)
+	})
+
+	it('reduceRight: object', () => {
+		const expected = 12
+		assert(reduceRight({
+			a: 1,
+			b: 2,
+			c: 3,
+		}, (memo, num) => memo * num, 2))
+	})
+
+	it('reduceRight: null arg', () =>
+		assert(reduceRight(null, null, 2), 2)
+	)
+
+	it('reduceRight: undefined arg', () =>
+		assert(reduceRight(undefined, undefined, 2), 2)
+	)
+
+	it('reduceRight: empty array', () =>
+		assert(reduceRight([], (memo, num) => num, 2), 2)
+	)
+
+	it('reduceRight: empty object', () =>
+		assert(reduceRight({}, (memo, num) => num, 2), 2)
 	)
 })

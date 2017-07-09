@@ -31,7 +31,6 @@ export const map = (obj, iteratee) => {
 export const reduce = (obj, iteratee, memo) => {
 	if (!iteratee || !obj)
 		return memo
-	let result
 	if (Array.isArray(obj)) {
 		const length = obj.length
 		for (let index = 0; index < length; index++)
@@ -45,8 +44,25 @@ export const reduce = (obj, iteratee, memo) => {
 	return memo
 }
 
+export const reduceRight = (obj, iteratee, memo) => {
+	if (!iteratee || !obj)
+		return memo
+	if (Array.isArray(obj)) {
+		const length = obj.length
+		for (let index = length - 1; index >= 0; index--)
+			memo = iteratee(memo, obj[index])
+		return memo
+	}
+	const objArray = Object.keys(obj)
+	const length = objArray.length
+	for (let index = length - 1; index >=0; index--)
+		memo = iteratee(memo, obj[objArray[index]])
+	return memo
+}
+
 export default {
 	each,
 	map,
 	reduce,
+	reduceRight,
 }
