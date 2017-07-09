@@ -1,7 +1,7 @@
 {
   "name": "mark",
   "version": "0.0.1",
-  "description": "A reimplementation underscore, a popular functional programming javascript library",
+  "description": "A reimplementation of underscore, a popular functional programming javascript library",
   "main": "mark.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register test/*.test.js -w"
