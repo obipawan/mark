@@ -5,6 +5,7 @@ import {
 	map,
 	reduce,
 	reduceRight,
+	find,
 } from '../mark'
 
 describe('collection tests', () => {
@@ -164,4 +165,36 @@ describe('collection tests', () => {
 	it('reduceRight: empty object', () =>
 		assert(reduceRight({}, (memo, num) => num, 2), 2)
 	)
+
+	it('find: array', () =>
+		assert(find([1, 4, 5, 6, 7], i => i % 2 === 0), 4)
+	)
+
+	it('find: object', () =>
+		assert(find({
+			a: 1,
+			b: 8,
+			c: 6,
+			d: {
+				e: 10,
+				f: 12,
+			},
+		}, i => i % 2 === 0), 8)
+	)
+
+	it('find: empty', () => {
+		assert(find() === undefined, true)
+	})
+
+	it('find: null arg', () => {
+		assert(find(null) === undefined, true)
+	})
+
+	it('find: empty array', () => {
+		assert(find([]) === undefined, true)
+	})
+
+	it('find: empty object', () => {
+		assert(find({}) === undefined, true)
+	})
 })

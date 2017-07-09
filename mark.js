@@ -60,9 +60,29 @@ export const reduceRight = (obj, iteratee, memo) => {
 	return memo
 }
 
+export const find = (obj, predicate) => {
+	if (!predicate || !obj)
+		return
+	if (Array.isArray(obj)) {
+		const length = obj.length
+		for (let index = 0; index < length; index++)
+			if (predicate(obj[index]))
+				return obj[index]
+		return
+	}
+	const objArray = Object.keys(obj)
+	const length = objArray.length
+	for (let index = 0; index < length; index++) {
+		const val = obj[objArray[index]]
+		if (predicate(val))
+			return val
+	}
+}
+
 export default {
 	each,
 	map,
 	reduce,
 	reduceRight,
+	find,
 }
