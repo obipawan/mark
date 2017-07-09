@@ -6,6 +6,7 @@ import {
 	reduce,
 	reduceRight,
 	find,
+	filter,
 } from '../mark'
 
 describe('collection tests', () => {
@@ -182,19 +183,46 @@ describe('collection tests', () => {
 		}, i => i % 2 === 0), 8)
 	)
 
-	it('find: empty', () => {
+	it('find: empty', () =>
 		assert(find() === undefined, true)
-	})
+	)
 
-	it('find: null arg', () => {
+	it('find: null arg', () =>
 		assert(find(null) === undefined, true)
-	})
+	)
 
-	it('find: empty array', () => {
+	it('find: empty array', () =>
 		assert(find([]) === undefined, true)
+	)
+
+	it('find: empty object', () =>
+		assert(find({}) === undefined, true)
+	)
+
+	it('filter: array', () => {
+		const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		const expected = [2, 4, 6, 8, 10]
+		assert(filter(array, i => i % 2 === 0), expected)
 	})
 
-	it('find: empty object', () => {
-		assert(find({}) === undefined, true)
+	it('filter: object', () => {
+		const obj = {
+			a: 1,
+			b: 2,
+			c: 3,
+			d: 4,
+			e: 5,
+			f: 6,
+		}
+		const expected = [2, 4, 6]
+		assert(filter(obj, i => i % 2 === 0), expected)
 	})
+
+	it('filter: empty array', () =>
+		assert(filter([]) === undefined, true)
+	)
+
+	it('filter: empty object', () =>
+		assert(filter({}) === undefined, true)
+	)
 })
